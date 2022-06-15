@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
@@ -40,4 +41,18 @@ dependencies {
 
     implementation 'androidx.security:security-crypto:1.0.0'
 
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.eugenewok'
+                artifactId = 'bnb-andsec-sdk'
+                version = '0.0.0'
+            }
+        }
+    }
 }
